@@ -1,3 +1,4 @@
+# read the dataset just once in order to speed up the process
 if (!exists("dataset")){
         ## Change working directory
         path <- "d:/courses/coursera/Exploratory Data Analysis/Project 1/ExData_Plotting1/figure/"
