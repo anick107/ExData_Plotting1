@@ -1,3 +1,4 @@
+# Include code for reading the data
 source("reader.R")
 
 png("plot3.png", width = 480, height = 480, units = "px", bg = "transparent")
