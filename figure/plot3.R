@@ -1,5 +1,6 @@
-#source("reader.R")
-png("plot3.png", width = 480, height = 480, units = "px")
+source("reader.R")
+
+png("plot3.png", width = 480, height = 480, units = "px", bg = "transparent")
 with(dataset, plot(Datetime, Sub_metering_1, type = "n", xlab = "", ylab = "Energy sub metering"))
 with(dataset, lines(Datetime, Sub_metering_1, col = "black"))
 with(dataset, lines(Datetime, Sub_metering_2, col = "red"))
