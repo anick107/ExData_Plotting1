@@ -3,13 +3,22 @@ if (!exists("dataset")){
         path <- "d:/courses/coursera/Exploratory Data Analysis/Project 1/ExData_Plotting1/figure/"
         setwd(path)
         
-        ## read complete file
-        filename <- "household_power_consumption.txt"
-        complete_dataset <- read.csv(filename, sep = ";", na.strings = "?")
+        ## original file
+        fh <- file("household_power_consumption.txt", "r")
         
-        ## get only specific dates
-        dataset <- subset(complete_dataset, (Date=="1/2/2007")| (Date=="2/2/2007"))
+        ## find the lines with dates 1/2/2007 through 2/2/2007
+        dataset_filename <- "household_power_consumption_2007Feb.txt"
+        cat(grep("(^Date)|(^[1|2]/2/2007)",readLines(fh), value=TRUE), 
+            sep = "\n", 
+            file = dataset_filename)
+        close(fh)
+        
+        ## read prepared csv file
+        dataset <- read.csv(dataset_filename, 
+                            sep = ";", 
+                            na.strings = "?")
         
         ## update format
-        dataset$Datetime <- strptime(paste(dataset$Date, dataset$Time), format = "%d/%m/%Y %H:%M:%S")
+        dataset$Datetime <- strptime(paste(dataset$Date, dataset$Time), 
+                                     format = "%d/%m/%Y %H:%M:%S")
 }
